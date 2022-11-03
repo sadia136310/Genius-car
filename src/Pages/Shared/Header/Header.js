@@ -4,23 +4,20 @@ import logo from '../../../assets/logo.svg'
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
-    const { user, logout } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const menuItems = <>
         <li><Link className='font-semibold' to='/'>Home</Link></li>
 
-        <li> <Link>
-            {user?.uid ?
-                <div>
 
+        {user?.email ?
+            <>
+                <li><Link className='font-semibold' to='/orders'>Orders</Link></li>
+            </>
+            :
+            <li> <Link className='font-semibold' to='/login'>Login</Link></li>
+        }
 
-                    <button onClick={logout} className="btn">LogOut</button>
-                </div>
-                :
-                <><Link className='font-semibold' to='/login'>Login</Link></>
-
-            }
-        </Link></li>
 
     </>
 
